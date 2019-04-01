@@ -1,0 +1,40 @@
+{
+  "name": "@breadhead/react-file-uploader",
+  "version": "1.2.1",
+  "description": "simple react file uploader",
+  "main": "dist/index.js",
+  "repository": "git@github.com:breadhead/react-file-uploader.git",
+  "author": "iwanttobealight <iwanttobealight@yandex.ru>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "prepare": "install-self-peers -- --ignore-scripts && yarn build",
+    "ci": "yarn lint",
+    "lint": "eslint . --ext .ts,.tsx",
+    "release": "standard-version",
+    "s": "yarn soda"
+  },
+  "keywords": [
+    "react",
+    "file-uploader"
+  ],
+  "peerDependencies": {
+    "@types/react": "^16.8.10",
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@solid-soda/scripts": "^1.3.0",
+    "@team-griffin/install-self-peers": "^1.1.1",
+    "typescript": "^3.4.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn soda lint-staged",
+      "commit-msg": "yarn soda commitlint"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
