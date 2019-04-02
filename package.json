@@ -17,7 +17,8 @@
   },
   "keywords": [
     "react",
-    "file-uploader"
+    "file-uploader",
+    "breadhead"
   ],
   "peerDependencies": {
     "@types/react": "^16.8.10",
