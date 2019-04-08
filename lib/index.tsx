@@ -54,12 +54,12 @@ const Uploader = ({
   }, [path, fileInput, api]);
 
   return (
-    <div className={!!styles && styles.container && styles.container}>
-      <div className={!!styles && styles.uploader && styles.uploader}>
-        <label className={!!styles && styles.label && styles.label} htmlFor={id}>
+    <div className={!!styles && styles.container ? styles.container : ''}>
+      <div className={!!styles && styles.uploader ? styles.uploader : ''}>
+        <label className={!!styles && styles.label ? styles.label : ''} htmlFor={id}>
           <input
             onChange={onChange}
-            className={!!styles && styles.input && styles.input}
+            className={!!styles && styles.input ? styles.input : ''}
             type="file"
             ref={fileInput}
             id={id}
@@ -68,7 +68,7 @@ const Uploader = ({
           {path ? "Изменить файл" : "Загрузить файл"}
         </label>
         {path && removeFile && (
-          <button className={!!styles && styles.button && styles.button} onClick={removeFile}>
+          <button className={!!styles && styles.button ? styles.button : ''} onClick={removeFile}>
             Удалить
           </button>
         )}
@@ -79,7 +79,7 @@ const Uploader = ({
           target="_blank"
           rel="noopener noreferrer"
           href={path}
-          className={!!styles && styles.link && styles.link}
+          className={!!styles && styles.link ? styles.link : ''}
         >
           {path}
         </a>

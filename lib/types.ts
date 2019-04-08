@@ -22,13 +22,13 @@ interface Api {
 
 export interface UploaderProps {
   id?: string;
+  api: Api;
+  onError: (err: Error) => void;
   initialValue?: string;
   onUploaded?: (url: string) => void;
-  onError?: (err: Error) => void;
   styles?: Styles;
   removeFile?: () => void;
   children?: ReactNode;
   ProgressBar?: JSX.Element;
   percentage?: number
-  api?: Api;
 }
