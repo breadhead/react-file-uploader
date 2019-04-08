@@ -11,13 +11,13 @@ const Uploader = ({
   removeFile,
   children,
   styles,
-  ProgressBar,
+  // ProgressBar,
   onError,
   api
 }: UploaderProps) => {
   const [path, setPath] = useState(initialValue);
   const [uploading, setUploading] = useState(false);
-  const [percentage, setPercentage] = useState(0);
+  const [rate, setRate] = useState(0);
 
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -34,11 +34,11 @@ const Uploader = ({
 
     try {
       setUploading(true);
-      setPercentage(0);
+      setRate(0);
 
       const { path: newPath } = await api.uploadFile(
         currentFile,
-        setPercentage
+        setRate
       );
 
       setPath(newPath);
@@ -73,7 +73,7 @@ const Uploader = ({
           </button>
         )}
       </div>
-      {uploading && ProgressBar && <ProgressBar percentage={percentage} />}
+      {/* {uploading && ProgressBar && <ProgressBar percentage={rate} />} */}
       {!!path && (
         <a
           target="_blank"

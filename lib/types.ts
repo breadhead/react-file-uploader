@@ -28,6 +28,7 @@ export interface UploaderProps {
   styles?: Styles;
   removeFile?: () => void;
   children?: ReactNode;
-  ProgressBar?: ComponentType<{ percentage: number }>;
+  ProgressBar?: JSX.Element;
+  percentage?: number
   api?: Api;
 }
