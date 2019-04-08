@@ -19,7 +19,8 @@ export interface UploaderProps {
   id?: string;
   uploadFile: (file: File, onProgress?: onProgress) => Promise<UploadedFile>;
   onError: (err: Error) => void;
-  initialValue?: string;
+  route: string,
+  initialPath?: string | boolean
   onUploaded?: (url: string) => void;
   styles?: Styles;
   removeFile?: () => void;

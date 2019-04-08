@@ -3,21 +3,22 @@ import { useCallback, useRef, useState } from "react";
 
 import { head } from "lodash";
 import { UploaderProps } from "./types";
+import { uploadFile } from "uploadFile";
 
 const Uploader = ({
   id,
+  route,
   onUploaded,
-  initialValue,
+  initialPath = false,
   removeFile,
   children,
   styles,
   // ProgressBar,
-  uploadFile,
   onError,
 }: UploaderProps) => {
-  const [path, setPath] = useState(initialValue);
+  const [path, setPath] = useState(initialPath);
   const [uploading, setUploading] = useState(false);
-  const [rate, setRate] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   const fileInput = useRef<HTMLInputElement>(null);
 
@@ -34,11 +35,12 @@ const Uploader = ({
 
     try {
       setUploading(true);
-      setRate(0);
+      setProgress(0);
 
       const { path: newPath } = await uploadFile(
         currentFile,
-        setRate
+        route,
+        setProgress
       );
 
       setPath(newPath);
@@ -73,12 +75,12 @@ const Uploader = ({
           </button>
         )}
       </div>
-      {/* {uploading && ProgressBar && <ProgressBar percentage={rate} />} */}
+      {/* {uploading && ProgressBar && <ProgressBar percentage={progress} />} */}
       {!!path && (
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href={path}
+          href={path as string}
           className={!!styles && styles.link ? styles.link : ''}
         >
           {path}
