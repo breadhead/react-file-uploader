@@ -12,8 +12,8 @@ const Uploader = ({
   children,
   styles,
   // ProgressBar,
+  uploadFile,
   onError,
-  api
 }: UploaderProps) => {
   const [path, setPath] = useState(initialValue);
   const [uploading, setUploading] = useState(false);
@@ -36,7 +36,7 @@ const Uploader = ({
       setUploading(true);
       setRate(0);
 
-      const { path: newPath } = await api.uploadFile(
+      const { path: newPath } = await uploadFile(
         currentFile,
         setRate
       );
@@ -51,7 +51,7 @@ const Uploader = ({
     } finally {
       setUploading(false);
     }
-  }, [path, fileInput, api]);
+  }, [path, fileInput, uploadFile]);
 
   return (
     <div className={!!styles && styles.container ? styles.container : ''}>

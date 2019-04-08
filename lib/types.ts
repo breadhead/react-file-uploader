@@ -13,16 +13,11 @@ export interface UploadedFile {
   path: string;
 }
 
-interface Api {
-  uploadFile(
-    file: File,
-    onProgress?: (precent: number) => void
-  ): Promise<UploadedFile>;
-}
+type onProgress = (percent: number) => void;
 
 export interface UploaderProps {
   id?: string;
-  api: Api;
+  uploadFile: (file: File, onProgress?: onProgress) => Promise<UploadedFile>;
   onError: (err: Error) => void;
   initialValue?: string;
   onUploaded?: (url: string) => void;
@@ -30,5 +25,5 @@ export interface UploaderProps {
   removeFile?: () => void;
   children?: ReactNode;
   ProgressBar?: JSX.Element;
-  percentage?: number
+  percentage?: number;
 }
