@@ -1,20 +1,18 @@
 import * as React from "react";
 import { useCallback, useRef, useState } from "react";
 
-import { head } from "lodash";
 import { UploaderProps } from "./types";
-import { uploadFile } from "uploadFile";
+import { head } from "head";
 
 const Uploader = ({
   id,
-  axiosInstance,
-  route,
+  uploadFile,
   onUploaded,
-  initialPath = false,
+  initialPath = null,
   removeFile,
-  children,
-  styles,
-  ProgressBar,
+  renderIcon,
+  styles = {},
+  renderProgressBar,
   onError,
 }: UploaderProps) => {
   const [path, setPath] = useState(initialPath);
@@ -40,9 +38,7 @@ const Uploader = ({
 
       const { path: newPath } = await uploadFile(
         currentFile,
-        route,
-        axiosInstance,
-        setProgress
+        setProgress,
       );
 
       setPath(newPath);
@@ -58,32 +54,32 @@ const Uploader = ({
   }, [path, fileInput, uploadFile]);
 
   return (
-    <div className={!!styles && styles.container ? styles.container : ''}>
-      <div className={!!styles && styles.uploader ? styles.uploader : ''}>
-        <label className={!!styles && styles.label ? styles.label : ''} htmlFor={id}>
+    <div className={styles.container}>
+      <div className={styles.uploader}>
+        <label className={styles.label} htmlFor={id}>
           <input
             onChange={onChange}
-            className={!!styles && styles.input ? styles.input : ''}
+            className={styles.input}
             type="file"
             ref={fileInput}
             id={id}
           />
-          {children}
-          {path ? "Изменить файл" : "Загрузить файл"}
+          {renderIcon && renderIcon()}
+          {!!path ? "Изменить файл" : "Загрузить файл"}
         </label>
-        {path && removeFile && (
-          <button className={!!styles && styles.button ? styles.button : ''} onClick={removeFile}>
+        {!!path && removeFile && (
+          <button className={styles.button} onClick={removeFile}>
             Удалить
           </button>
         )}
       </div>
-      {uploading && ProgressBar && <ProgressBar percentage={progress} />}
+      {uploading && renderProgressBar && renderProgressBar(progress)}
       {!!path && (
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href={path as string}
-          className={!!styles && styles.link ? styles.link : ''}
+          href={path || ''}
+          className={styles.link}
         >
           {path}
         </a>

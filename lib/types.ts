@@ -17,15 +17,13 @@ export interface UploadedFile {
 }
 export interface UploaderProps {
   id?: string;
-  axiosInstance: AxiosInstance
   uploadFile: (file: File, onProgress?: onProgress) => Promise<UploadedFile>;
   onError: (err: Error) => void;
-  route: string,
-  initialPath?: string | boolean
+  initialPath?: string
   onUploaded?: (url: string) => void;
   styles?: Styles;
   removeFile?: () => void;
-  children?: ReactNode;
-  ProgressBar?: React.FC<{ percentage: number }> 
-  percentage?: number;
+  renderIcon?: () => ReactNode;
+  renderProgressBar?: (percentage: number) => ReactNode 
 }
+
