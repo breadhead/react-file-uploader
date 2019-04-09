@@ -8,9 +8,20 @@
 
 ```js
 import * as React from "react";
-import Uploader from "@breadhead/react-file-uploader";
+import { Uploader } from "@breadhead/react-file-uploader";
 
-const uploaderStyles = {
+<Uploader
+  id="my-uploader"
+  uploadFile={(file: File, onProgress?: onProgress) => Promise<UploadedFile>}
+  onError={(err: Error) => void}
+  onUploaded={(url: string) => void}
+  renderIcon={() => <svg />}
+  renderProgressBar={(percentage: number) => <div percentage={percentage} />}
+  className={uploaderClassName}
+  buttonText={uploaderButtonText}
+/>
+
+const uploaderClassName = {
   container: 'container'
   uploader: 'uploader'
   label: 'label'
@@ -19,13 +30,9 @@ const uploaderStyles = {
   link: 'link'
 }
 
-<Uploader
-  id="id"
-  onUploaded={(url: string) => void}
-  onError={(err: Error) => void}
-  removeFile={() => void}
-  ProgressBar={<div />}
-  styles={uploaderStyles}
-/>
-
+const uploaderButtonText = {
+  upload: 'upload file',
+  remove: 'remove file',
+  update: 'update file',
+}
 ```
