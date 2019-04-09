@@ -2,7 +2,7 @@ import * as React from "react";
 import { useCallback, useRef, useState } from "react";
 
 import { UploaderProps } from "./types";
-import { head } from "head";
+import { head } from "./head";
 
 const Uploader = ({
   id,
