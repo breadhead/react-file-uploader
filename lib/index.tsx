@@ -3,6 +3,7 @@ import { useCallback, useRef, useState, useMemo } from "react";
 
 import { UploaderProps } from "./UploaderProps";
 import { head } from "./head";
+import { Link } from "Link";
 
 export const Uploader = ({
   id,
@@ -77,23 +78,13 @@ export const Uploader = ({
           {uploadButtonText}
         </label>
         {!!path && removeFile && (
-          <button className={className.button} onClick={removeFile}>
+          <button onClick={removeFile} className={className.button}>
             {buttonText.remove}
           </button>
         )}
       </div>
       {uploading && renderProgressBar && renderProgressBar(progress)}
-      {!!path && (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={path || ""}
-          className={className.link}
-        >
-          {path}
-        </a>
-      )}
+      {!!path && <Link path={path} className={className.link} />}
     </div>
   );
 };
-
