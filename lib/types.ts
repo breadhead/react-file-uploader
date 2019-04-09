@@ -1,13 +1,19 @@
 import { ReactNode } from "react";
 import { AxiosInstance } from "axios";
 
-interface Styles {
+interface ClassName {
   container?: string;
   uploader?: string;
   label?: string;
   input?: string;
   button?: string;
   link?: string;
+}
+
+interface ButtonText {
+  upload: string
+  remove: string
+  update?: string
 }
 
 type onProgress = (percent: number) => void;
@@ -21,9 +27,9 @@ export interface UploaderProps {
   onError: (err: Error) => void;
   initialPath?: string
   onUploaded?: (url: string) => void;
-  styles?: Styles;
+  className?: ClassName;
+  buttonText?: ButtonText;
   removeFile?: () => void;
   renderIcon?: () => ReactNode;
   renderProgressBar?: (percentage: number) => ReactNode 
 }
-
