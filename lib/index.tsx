@@ -7,6 +7,7 @@ import { uploadFile } from "uploadFile";
 
 const Uploader = ({
   id,
+  axiosInstance,
   route,
   onUploaded,
   initialPath = false,
@@ -40,6 +41,7 @@ const Uploader = ({
       const { path: newPath } = await uploadFile(
         currentFile,
         route,
+        axiosInstance,
         setProgress
       );
 

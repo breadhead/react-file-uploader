@@ -1,4 +1,5 @@
-import { ReactNode, ComponentType } from "react";
+import { ReactNode } from "react";
+import { AxiosInstance } from "axios";
 
 interface Styles {
   container?: string;
@@ -17,6 +18,7 @@ type onProgress = (percent: number) => void;
 
 export interface UploaderProps {
   id?: string;
+  axiosInstance: AxiosInstance
   uploadFile: (file: File, onProgress?: onProgress) => Promise<UploadedFile>;
   onError: (err: Error) => void;
   route: string,
