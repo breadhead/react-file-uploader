@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useCallback, useRef, useState, useMemo } from "react";
 
-import { UploaderProps } from "./types";
+import { UploaderProps } from "./UploaderProps";
 import { head } from "./head";
 
-const Uploader = ({
+export const Uploader = ({
   id,
   uploadFile,
   onUploaded,
@@ -97,4 +97,3 @@ const Uploader = ({
   );
 };
 
-export default Uploader;
