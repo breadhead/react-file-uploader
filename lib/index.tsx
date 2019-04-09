@@ -14,7 +14,7 @@ const Uploader = ({
   removeFile,
   children,
   styles,
-  // ProgressBar,
+  ProgressBar,
   onError,
 }: UploaderProps) => {
   const [path, setPath] = useState(initialPath);
@@ -77,7 +77,7 @@ const Uploader = ({
           </button>
         )}
       </div>
-      {/* {uploading && ProgressBar && <ProgressBar percentage={progress} />} */}
+      {uploading && ProgressBar && <ProgressBar percentage={progress} />}
       {!!path && (
         <a
           target="_blank"

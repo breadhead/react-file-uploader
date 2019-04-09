@@ -10,12 +10,11 @@ interface Styles {
   link?: string;
 }
 
+type onProgress = (percent: number) => void;
+
 export interface UploadedFile {
   path: string;
 }
-
-type onProgress = (percent: number) => void;
-
 export interface UploaderProps {
   id?: string;
   axiosInstance: AxiosInstance
@@ -27,6 +26,6 @@ export interface UploaderProps {
   styles?: Styles;
   removeFile?: () => void;
   children?: ReactNode;
-  ProgressBar?: JSX.Element;
+  ProgressBar?: React.FC<{ percentage: number }> 
   percentage?: number;
 }
