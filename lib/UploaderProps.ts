@@ -10,7 +10,7 @@ interface RenderProps {
 }
 export interface UploaderProps {
   id: string;
-  render: (props: RenderProps) => React.ReactNode;
+  children: (props: RenderProps) => React.ReactNode;
   uploadFile: (file: File, onProgress?: onProgress) => Promise<UploadedFile>;
   onError: (err: Error) => void;
   initialPath?: string;

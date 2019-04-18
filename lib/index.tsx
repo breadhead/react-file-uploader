@@ -6,7 +6,7 @@ import { head } from "./head";
 
 export const Uploader = ({
   id,
-  render,
+  children,
   initialPath,
   uploadFile,
   onUploaded,
@@ -51,7 +51,7 @@ export const Uploader = ({
     <>
       <label htmlFor="id">
         <input onChange={onChange} type="file" ref={fileInput} id={id} />
-        {render({ path, uploading, progress })}
+        {children({ path, uploading, progress })}
       </label>
     </>
   );
