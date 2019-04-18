@@ -1,23 +1,15 @@
 import * as React from "react";
-import { useCallback, useRef, useState, useMemo } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { UploaderProps } from "./UploaderProps";
 import { head } from "./head";
-import { Link } from "Link";
 
 export const Uploader = ({
   id,
+  render,
+  initialPath,
   uploadFile,
   onUploaded,
-  initialPath = null,
-  removeFile,
-  renderIcon,
-  className = {},
-  buttonText = {
-    upload: "upload file",
-    remove: "remove file"
-  },
-  renderProgressBar,
   onError
 }: UploaderProps) => {
   const [path, setPath] = useState(initialPath);
@@ -25,14 +17,6 @@ export const Uploader = ({
   const [progress, setProgress] = useState(0);
 
   const fileInput = useRef<HTMLInputElement>(null);
-
-  const uploadButtonText = useMemo(() => {
-    if (!buttonText.update) {
-      return buttonText.upload;
-    }
-
-    return !!path ? buttonText.update : buttonText.upload;
-  }, [path]);
 
   const onChange = useCallback(async () => {
     if (!fileInput.current) {
@@ -64,27 +48,11 @@ export const Uploader = ({
   }, [path, fileInput, uploadFile]);
 
   return (
-    <div className={className.container}>
-      <div className={className.uploader}>
-        <label className={className.label} htmlFor={id}>
-          <input
-            onChange={onChange}
-            className={className.input}
-            type="file"
-            ref={fileInput}
-            id={id}
-          />
-          {renderIcon && renderIcon()}
-          {uploadButtonText}
-        </label>
-        {!!path && removeFile && (
-          <button onClick={removeFile} className={className.button}>
-            {buttonText.remove}
-          </button>
-        )}
-      </div>
-      {uploading && renderProgressBar && renderProgressBar(progress)}
-      {!!path && <Link path={path} className={className.link} />}
-    </div>
+    <>
+      <label htmlFor="id">
+        <input onChange={onChange} type="file" ref={fileInput} id={id} />
+        {render({ path, uploading, progress })}
+      </label>
+    </>
   );
 };

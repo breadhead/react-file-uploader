@@ -1,18 +1,18 @@
-import { ReactNode } from "react";
-
 interface UploadedFile {
   path: string;
 }
 type onProgress = (percent: number) => void;
+
+interface RenderProps {
+  path: string;
+  uploading: boolean;
+  progress: number;
+}
 export interface UploaderProps {
-  id?: string;
+  id: string;
+  render: (props: RenderProps) => React.ReactNode;
   uploadFile: (file: File, onProgress?: onProgress) => Promise<UploadedFile>;
   onError: (err: Error) => void;
-  initialPath?: string
+  initialPath?: string;
   onUploaded?: (url: string) => void;
-  className?: ClassName;
-  buttonText?: ButtonText;
-  removeFile?: () => void;
-  renderIcon?: () => ReactNode;
-  renderProgressBar?: (percentage: number) => ReactNode 
 }
