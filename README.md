@@ -10,29 +10,24 @@
 import * as React from "react";
 import { Uploader } from "@breadhead/react-file-uploader";
 
-<Uploader
-  id="my-uploader"
-  uploadFile={(file: File, onProgress?: onProgress) => Promise<UploadedFile>}
-  onError={(err: Error) => void}
-  onUploaded={(url: string) => void}
-  renderIcon={() => <svg />}
-  renderProgressBar={(percentage: number) => <div percentage={percentage} />}
-  className={uploaderClassName}
-  buttonText={uploaderButtonText}
-/>
+  <Uploader
+    id="my-uploader"
+    uploadFile={(file: File, onProgress?: onProgress) => Promise<UploadedFile>}
+    onError={(err: Error) => void}
+    onUploaded={(url: string) => void}
+  >
+    {({ path, uploading, progress }: RenderProps) => (
+      <>
+        <ProgressBar progress={progress} />
+        {!!uploading && <p>file is uploaded from {path}</p>}
+      </>
+    )}
+  </Uploader>
 
-const uploaderClassName = {
-  container: 'container'
-  uploader: 'uploader'
-  label: 'label'
-  input: 'input'
-  button: 'button'
-  link: 'link'
-}
+  interface RenderProps {
+    path: string
+    uploading: boolean
+    progress: number
+  }
 
-const uploaderButtonText = {
-  upload: 'upload file',
-  remove: 'remove file',
-  update: 'update file',
-}
 ```
