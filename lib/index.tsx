@@ -50,7 +50,13 @@ export const Uploader = ({
   return (
     <>
       <label htmlFor={id}>
-        <input onChange={onChange} type="file" ref={fileInput} id={id} />
+        <input
+          style={{ display: "none" }}
+          onChange={onChange}
+          type="file"
+          ref={fileInput}
+          id={id}
+        />
         {children({ path, uploading, progress })}
       </label>
     </>
