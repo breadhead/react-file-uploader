@@ -1,6 +1,6 @@
 # react-file-uploader
 
-## Instalation
+## Installation
 
 `yarn add --dev @breadhead/react-file-uploader`
 
